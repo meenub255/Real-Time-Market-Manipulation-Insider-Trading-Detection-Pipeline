@@ -133,6 +133,3 @@ An **Isolation Forest** (200 trees) is trained on 51k synthetic events using sca
 docker compose down
 ```
 
-## License
-
-MIT
