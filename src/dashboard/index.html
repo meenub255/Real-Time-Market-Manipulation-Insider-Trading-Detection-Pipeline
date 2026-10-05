@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market Surveillance | Live Anomaly Alerts</title>
+  <meta name="description" content="Real-time dashboard for market manipulation and insider trading anomaly alerts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <div>
+        <h1>Market Surveillance</h1>
+        <p class="subtitle">Real-time manipulation &amp; insider trading detection</p>
+      </div>
+    </div>
+    <div id="connection-status" class="status status--connecting">
+      <span class="dot"></span><span id="status-text">Connecting…</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="stats">
+      <article class="card stat">
+        <span class="stat-label">Total Alerts</span>
+        <span id="stat-total" class="stat-value">0</span>
+      </article>
+      <article class="card stat">
+        <span class="stat-label">Alerts / min</span>
+        <span id="stat-rate" class="stat-value">0</span>
+      </article>
+      <article class="card stat">
+        <span class="stat-label">Most Flagged</span>
+        <span id="stat-top" class="stat-value">—</span>
+      </article>
+      <article class="card stat">
+        <span class="stat-label">Peak Volume</span>
+        <span id="stat-peak" class="stat-value">0</span>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Alerts by Ticker</h2>
+        <div id="ticker-bars" class="bars"></div>
+      </article>
+
+      <article class="card feed-card">
+        <div class="feed-header">
+          <h2>Live Alert Feed</h2>
+          <button id="clear-btn" class="btn">Clear</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Time</th><th>Ticker</th><th>Price</th><th>Volume</th><th>Sentiment</th><th>Severity</th></tr>
+            </thead>
+            <tbody id="alert-rows">
+              <tr class="empty"><td colspan="6">Waiting for anomalies…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
