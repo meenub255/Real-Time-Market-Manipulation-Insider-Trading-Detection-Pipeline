@@ -11,9 +11,11 @@ ALERT_CHANNEL = "alerts"
 RECENT_ALERTS_KEY = "alerts:recent"
 ALERT_TTL_SECONDS = 24 * 3600
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "models", "isolation_forest.joblib")
+REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
+KAFKA_BROKER = os.environ.get('KAFKA_BROKER', 'localhost:9092')
 
 # Initialize Redis client
-redis_client = redis.Redis(host='localhost', port=6379, db=0)
+redis_client = redis.Redis(host=REDIS_HOST, port=6379, db=0)
 
 # Load the trained Isolation Forest (run `python src/train_model.py` first)
 if not os.path.exists(MODEL_PATH):
@@ -76,7 +78,7 @@ def main():
     df = spark \
         .readStream \
         .format("kafka") \
-        .option("kafka.bootstrap.servers", "localhost:9092") \
+        .option("kafka.bootstrap.servers", KAFKA_BROKER) \
         .option("subscribe", "financial_events") \
         .load()
 

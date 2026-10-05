@@ -1,6 +1,7 @@
 import json
 import time
 import random
+# pyrefly: ignore [missing-import]
 from confluent_kafka import Producer
 
 KAFKA_TOPIC = 'financial_events'

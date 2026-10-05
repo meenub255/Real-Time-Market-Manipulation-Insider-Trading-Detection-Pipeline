@@ -14,9 +14,10 @@ from flask import Flask, Response, jsonify, send_from_directory
 ALERT_CHANNEL = "alerts"
 RECENT_ALERTS_KEY = "alerts:recent"
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "dashboard")
+REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
 
 app = Flask(__name__, static_folder=STATIC_DIR)
-redis_client = redis.Redis(host="localhost", port=6379, db=0, decode_responses=True)
+redis_client = redis.Redis(host=REDIS_HOST, port=6379, db=0, decode_responses=True)
 
 
 @app.route("/")
